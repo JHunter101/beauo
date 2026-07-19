@@ -1,0 +1,36 @@
+@use "sass:list";
+@use "sass:map";
+
+$colors: ( "black": (0, 0, 0), "white": (255, 255, 255), "dark": (31, 41, 55), "light": (243, 244, 246), "grey-light": (200, 200, 200), "grey": (107, 114, 128), "grey-dark": (31, 41, 55), "red-light": (255, 192, 192), "red": (220, 38, 38), "red-dark": (153, 27, 27), "orange-light": (255, 220, 180), "orange": (234, 88, 12), "orange-dark": (154, 52, 18), "yellow-light": (255, 232, 194), "yellow": (245, 158, 11), "yellow-dark": (180, 83, 9), "green-light": (188, 255, 213), "green": (22, 163, 74), "green-dark": (21, 128, 61), "cyan-light": (207, 250, 254), "cyan": (6, 182, 212), "cyan-dark": (14, 116, 144), "blue-light": (163, 198, 255), "blue": (59, 130, 246), "blue-dark": (29, 78, 216), "purple-light": (233, 213, 255), "purple": (147, 51, 234), "purple-dark": (107, 33, 168), "pink-light": (251, 207, 232), "pink": (236, 72, 153), "pink-dark": (157, 23, 77) );
+
+$semantic-light: ( "main-bg": (252, 254, 255), "main-fg": map.get($colors, "dark"), "alt-bg": (245, 252, 255), "alt-fg": map.get($colors, "dark"), );
+
+$semantic-dark: ( "main-bg": map.get($colors, "dark"), "main-fg": map.get($colors, "light"), "alt-bg": map.get($colors, "black"), "alt-fg": map.get($colors, "white"), );
+
+$all-colors: map.merge($colors, $semantic-light);
+
+:root {
+    @each $name, $rgb in $colors {
+        --rgb-#{$name}: #{list.nth($rgb, 1)}, #{list.nth($rgb, 2)}, #{list.nth($rgb, 3)};
+    }
+
+    @each $name, $rgb in $semantic-light {
+        --rgb-#{$name}: #{list.nth($rgb, 1)}, #{list.nth($rgb, 2)}, #{list.nth($rgb, 3)};
+    }
+}
+
+[data-theme="dark"] {
+    @each $name, $rgb in $semantic-dark {
+        --rgb-#{$name}: #{list.nth($rgb, 1)}, #{list.nth($rgb, 2)}, #{list.nth($rgb, 3)};
+    }
+}
+
+@each $name, $rgb in $all-colors {
+    .bg-color-#{$name} {
+        background-color: rgb(var(--rgb-#{$name}));
+    }
+
+    .fg-color-#{$name} {
+        color: rgb(var(--rgb-#{$name}));
+    }
+}

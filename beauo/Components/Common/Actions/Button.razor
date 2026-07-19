@@ -1,0 +1,25 @@
+﻿@namespace Beauo.Components
+
+<button type="button" class="@ClassNames" @onclick="OnClick">
+    <Row Align="@AlignItemsClass.Center" Reverse="@IconLeft">
+        <Text Size="Size" >
+            @Text
+        </Text>
+        @if (Icon is not null)
+        {
+            @Icon
+        }
+    </Row>
+</button>
+
+@code {
+    [Parameter, EditorRequired] public string Text { get; set; }
+    [Parameter] public TextSizeClass? Size { get; set; } = TextSizeClass.Medium;
+    [Parameter] public bool IconLeft { get; set; } = false;
+
+    [Parameter] public RenderFragment? Icon { get; set; }
+
+    [Parameter, EditorRequired] public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    private string ClassNames => $"{Size}".Trim();
+}

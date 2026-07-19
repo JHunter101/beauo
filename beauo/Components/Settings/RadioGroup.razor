@@ -1,0 +1,42 @@
+﻿@namespace Beauo.Components.Settings
+
+@typeparam TValue
+
+<Fieldset Label="@Label" IsDisabled="@IsDisabled">
+	<Column>
+		@foreach (var option in Options)
+		{
+			<Field InputFirst>
+				<ChildContent>
+					<input type="radio"
+						   disabled="@IsOptionDisabled(option)"
+						   checked="@(EqualityComparer<TValue>.Default.Equals(Value, option))"
+						   @onchange="() => ValueChanged.InvokeAsync(option)" />
+				</ChildContent>
+				<Label>
+					@if (ChildContent != null)
+					{
+						@ChildContent(option)
+					}
+					else
+					{
+						@(option?.ToString() ?? "null")
+					}
+				</Label>
+			</Field>
+		}
+	</Column>
+</Fieldset>
+
+	@code {
+	[Parameter, EditorRequired] public TValue Value { get; set; }
+	[Parameter, EditorRequired] public EventCallback<TValue> ValueChanged { get; set; }
+
+	[Parameter, EditorRequired] public string Label { get; set; }
+	[Parameter, EditorRequired] public HashSet<TValue> Options { get; set; } = [];
+
+	[Parameter] public bool IsDisabled { get; set; }
+	[Parameter] public Func<TValue, bool> IsOptionDisabled { get; set; } = _ => false;
+
+	[Parameter]	public RenderFragment<TValue>? ChildContent { get; set; }
+}

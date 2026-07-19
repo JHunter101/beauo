@@ -1,0 +1,19 @@
+﻿@namespace Beauo.Components
+
+@typeparam T where T : struct
+
+<Text Color="@Color">@FormattedDate</Text>
+
+@code {
+	[Parameter, EditorRequired] public T Value { get; set; }
+	[Parameter] public string Format { get; set; } = "yyyy-MM-dd";
+	[Parameter] public FgColorVar? Color { get; set; }
+
+	private string FormattedDate => Value switch
+	{
+		DateOnly date => date.ToString(Format),
+		DateTime dateTime => dateTime.ToString(Format),
+		DateTimeOffset offset => offset.ToString(Format),
+		_ => Convert.ToDateTime(Value).ToString(Format)
+	};
+}

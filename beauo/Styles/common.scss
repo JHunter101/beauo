@@ -1,0 +1,121 @@
+$sizes: ( 2x: var(--size-2x), 4x: var(--size-4x), 8x: var(--size-8x), 12x: var(--size-12x), 16x: var(--size-16x), 24x: var(--size-24x), 32x: var(--size-32x), 48x: var(--size-32x), 64x: var(--size-64x), 80x: var(--size-80x), 96x: var(--size-96x), 128x: var(--size-128x) );
+
+@each $name, $value in $sizes {
+    // Margin
+    .m-#{$name} {
+        margin: $value;
+    }
+
+    .mt-#{$name} {
+        margin-top: $value;
+    }
+
+    .mr-#{$name} {
+        margin-right: $value;
+    }
+
+    .mb-#{$name} {
+        margin-bottom: $value;
+    }
+
+    .ml-#{$name} {
+        margin-left: $value;
+    }
+
+    .mx-#{$name} {
+        margin-left: $value;
+        margin-right: $value;
+    }
+
+    .my-#{$name} {
+        margin-top: $value;
+        margin-bottom: $value;
+    }
+
+    // Padding
+    .p-#{$name} {
+        padding: $value;
+    }
+
+    .pt-#{$name} {
+        padding-top: $value;
+    }
+
+    .pr-#{$name} {
+        padding-right: $value;
+    }
+
+    .pb-#{$name} {
+        padding-bottom: $value;
+    }
+
+    .pl-#{$name} {
+        padding-left: $value;
+    }
+
+    .px-#{$name} {
+        padding-left: $value;
+        padding-right: $value;
+    }
+
+    .py-#{$name} {
+        padding-top: $value;
+        padding-bottom: $value;
+    }
+
+    // Height
+    .height-#{$name} {
+        height: $value;
+    }
+
+    // Gap
+    .gap-#{$name} {
+        gap: $value;
+    }
+}
+
+.w100 {
+    width: 100%;
+}
+
+// ---------- ALIGN ITEMS ----------
+.align-center {
+    align-items: center;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.align-end {
+    align-items: flex-end;
+}
+
+.align-stretch {
+    align-items: stretch;
+}
+
+// ---------- JUSTIFY CONTENT ----------
+.justify-center {
+    justify-content: center;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
+}
