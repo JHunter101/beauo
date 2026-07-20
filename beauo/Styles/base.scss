@@ -1,24 +1,30 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
 :root {
     interpolate-size: allow-keywords;
-    --size-2x: clamp(2px, 0.1vw + 1.08px, 3px);
-    --size-4x: clamp(4px, 0.2vw + 2.16px, 6px);
-    --size-8x: clamp(8px, 0.25vw + 7.2px, 12px);
-    --size-12x: clamp(12px, 0.375vw + 10.8px, 18px);
-    --size-16x: clamp(16px, 0.5vw + 14.4px, 24px);
-    --size-24x: clamp(24px, 0.75vw + 21.6px, 36px);
-    --size-32x: clamp(32px, 1vw + 28.8px, 48px);
-    --size-48x: clamp(48px, 1.5vw + 43.2px, 72px);
-    --size-64x: clamp(64px, 2vw + 57.6px, 96px);
-    --size-80x: clamp(80px, 2.5vw + 72px, 120px);
-    --size-96x: clamp(96px, 3vw + 86.4px, 144px);
-    --size-128x: clamp(128px, 4vw + 115.2px, 192px);
 }
 
-* {
+html {
+    font-size: clamp(16px, 2vw, 18px);
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    margin: 0px;
+    margin: 0;
+    font: inherit;
+    color: inherit;
 }
 
 body {
     background: rgba(var(--rgb-main-bg), 1);
+    font-family: 'SF Pro Display', sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+p,
+label {
+    display: inline-block;
 }

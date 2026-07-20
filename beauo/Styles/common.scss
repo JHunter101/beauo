@@ -1,10 +1,35 @@
-$sizes: ( 2x: var(--size-2x), 4x: var(--size-4x), 8x: var(--size-8x), 12x: var(--size-12x), 16x: var(--size-16x), 24x: var(--size-24x), 32x: var(--size-32x), 48x: var(--size-32x), 64x: var(--size-64x), 80x: var(--size-80x), 96x: var(--size-96x), 128x: var(--size-128x) );
+:root {
+    interpolate-size: allow-keywords;
+
+    @each $name, $value in ( 2x: (2px, 0.1vw + 1.08px, 3px), 4x: (4px, 0.2vw + 2.16px, 6px), 8x: (8px, 0.25vw + 7.2px, 12px), 12x: (12px, 0.375vw + 10.8px, 18px), 16x: (16px, 0.5vw + 14.4px, 24px), 24x: (24px, 0.75vw + 21.6px, 36px), 32x: (32px, 1vw + 28.8px, 48px), 48x: (48px, 1.5vw + 43.2px, 72px), 64x: (64px, 2vw + 57.6px, 96px), 80x: (80px, 2.5vw + 72px, 120px), 96x: (96px, 3vw + 86.4px, 144px), 128x: (128px, 4vw + 115.2px, 192px) ) {
+        --size-#{$name}: clamp(#{nth($value, 1)}, #{nth($value, 2)}, #{nth($value, 3)});
+    }
+}
+
+$sizes: ( 2x: var(--size-2x), 4x: var(--size-4x), 8x: var(--size-8x), 12x: var(--size-12x), 16x: var(--size-16x), 24x: var(--size-24x), 32x: var(--size-32x), 48x: var(--size-48x), 64x: var(--size-64x), 80x: var(--size-80x), 96x: var(--size-96x), 128x: var(--size-128x) );
+
+@mixin spacing($property, $name, $value) {
+    .#{$property}-#{$name} {
+        #{$property}: $value;
+    }
+}
+
+@mixin axis-spacing($property, $axis, $name, $value) {
+    .#{$axis}-#{$name} {
+        @if $axis == x {
+            #{$property}-left: $value;
+            #{$property}-right: $value;
+        }
+        @else {
+            #{$property}-top: $value;
+            #{$property}-bottom: $value;
+        }
+    }
+}
 
 @each $name, $value in $sizes {
     // Margin
-    .m-#{$name} {
-        margin: $value;
-    }
+    @include spacing(m, $name, $value);
 
     .mt-#{$name} {
         margin-top: $value;
@@ -22,20 +47,11 @@ $sizes: ( 2x: var(--size-2x), 4x: var(--size-4x), 8x: var(--size-8x), 12x: var(-
         margin-left: $value;
     }
 
-    .mx-#{$name} {
-        margin-left: $value;
-        margin-right: $value;
-    }
-
-    .my-#{$name} {
-        margin-top: $value;
-        margin-bottom: $value;
-    }
+    @include axis-spacing(margin, x, $name, $value);
+    @include axis-spacing(margin, y, $name, $value);
 
     // Padding
-    .p-#{$name} {
-        padding: $value;
-    }
+    @include spacing(p, $name, $value);
 
     .pt-#{$name} {
         padding-top: $value;
@@ -53,69 +69,29 @@ $sizes: ( 2x: var(--size-2x), 4x: var(--size-4x), 8x: var(--size-8x), 12x: var(-
         padding-left: $value;
     }
 
-    .px-#{$name} {
-        padding-left: $value;
-        padding-right: $value;
-    }
+    @include axis-spacing(padding, x, $name, $value);
+    @include axis-spacing(padding, y, $name, $value);
 
-    .py-#{$name} {
-        padding-top: $value;
-        padding-bottom: $value;
-    }
-
-    // Height
+    // Other sizing
     .height-#{$name} {
         height: $value;
     }
 
-    // Gap
     .gap-#{$name} {
         gap: $value;
     }
 }
 
-.w100 {
-    width: 100%;
+// Alignment
+@each $name, $value in ( center: center, start: flex-start, end: flex-end, stretch: stretch ) {
+    .align-#{$name} {
+        align-items: $value;
+    }
 }
 
-// ---------- ALIGN ITEMS ----------
-.align-center {
-    align-items: center;
-}
-
-.align-start {
-    align-items: flex-start;
-}
-
-.align-end {
-    align-items: flex-end;
-}
-
-.align-stretch {
-    align-items: stretch;
-}
-
-// ---------- JUSTIFY CONTENT ----------
-.justify-center {
-    justify-content: center;
-}
-
-.justify-start {
-    justify-content: flex-start;
-}
-
-.justify-end {
-    justify-content: flex-end;
-}
-
-.space-around {
-    justify-content: space-around;
-}
-
-.space-between {
-    justify-content: space-between;
-}
-
-.space-evenly {
-    justify-content: space-evenly;
+// Justification
+@each $name, $value in ( center: center, start: flex-start, end: flex-end, around: space-around, between: space-between, evenly: space-evenly ) {
+    .justify-#{$name} {
+        justify-content: $value;
+    }
 }

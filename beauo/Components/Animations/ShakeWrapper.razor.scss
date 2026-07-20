@@ -54,7 +54,7 @@ div {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    &.active {
+    .active {
         animation: none;
     }
 }

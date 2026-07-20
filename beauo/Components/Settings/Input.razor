@@ -18,5 +18,5 @@
 
 	[Parameter] public RenderFragment? ChildContent { get; set; }
 	
-	private string _id = Guid.NewGuid().ToString("N");
+	private readonly string _id = Guid.NewGuid().ToString("N");
 }
