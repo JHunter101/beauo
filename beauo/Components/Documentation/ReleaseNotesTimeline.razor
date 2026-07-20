@@ -1,0 +1,9 @@
+﻿@namespace Beauo.Components.Documentation
+
+<Timeline Title="Release Notes">
+	@ChildContent
+</Timeline>
+
+@code {
+	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+}

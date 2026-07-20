@@ -1,0 +1,16 @@
+﻿@namespace Beauo.Components
+
+@using Beauo.Types.Contents
+@using Beauo.Types.Style
+
+<div class=@($"{Type} {Content.Color.AsClass}")>
+	<Text Size="Size" Color="Content.Color.Accent">
+		@Content.Text
+	</Text>
+</div>
+
+@code {
+	[Parameter, EditorRequired] public ShapeContent Content { get; set; }
+	[Parameter, EditorRequired] public ShapeClass Type { get; set; }
+	[Parameter] public TextSizeClass Size { get; set; } = TextSizeClass.Medium;
+}

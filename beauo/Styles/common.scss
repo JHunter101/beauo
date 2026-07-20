@@ -1,0 +1,99 @@
+@use "sass:list";
+
+:root {
+    interpolate-size: allow-keywords;
+
+    @each $name, $value in ( 2x: (2px, calc(0.1vw + 1.08px), 3px), 4x: (4px, calc(0.2vw + 2.16px), 6px), 8x: (8px, calc(0.25vw + 7.2px), 12px), 12x: (12px, calc(0.375vw + 10.8px), 18px), 16x: (16px, calc(0.5vw + 14.4px), 24px), 24x: (24px, calc(0.75vw + 21.6px), 36px), 32x: (32px, calc(1vw + 28.8px), 48px), 48x: (48px, calc(1.5vw + 43.2px), 72px), 64x: (64px, calc(2vw + 57.6px), 96px), 80x: (80px, calc(2.5vw + 72px), 120px), 96x: (96px, calc(3vw + 86.4px), 144px), 128x: (128px, calc(4vw + 115.2px), 192px) ) {
+        --size-#{$name}: clamp(#{list.nth($value, 1)}, #{list.nth($value, 2)}, #{list.nth($value, 3)});
+    }
+}
+
+$sizes: ( 2x: var(--size-2x), 4x: var(--size-4x), 8x: var(--size-8x), 12x: var(--size-12x), 16x: var(--size-16x), 24x: var(--size-24x), 32x: var(--size-32x), 48x: var(--size-48x), 64x: var(--size-64x), 80x: var(--size-80x), 96x: var(--size-96x), 128x: var(--size-128x) );
+
+@mixin spacing($prefix, $property, $name, $value) {
+    .#{$prefix}-#{$name} {
+        #{$property}: $value;
+    }
+}
+
+@mixin axis-spacing($prefix, $property, $axis, $name, $value) {
+    .#{$prefix}#{$axis}-#{$name} {
+        @if $axis == x {
+            #{$property}-left: $value;
+            #{$property}-right: $value;
+        }
+        @else {
+            #{$property}-top: $value;
+            #{$property}-bottom: $value;
+        }
+    }
+}
+
+@each $name, $value in $sizes {
+    // Margin
+    @include spacing(m, margin, $name, $value);
+
+    .mt-#{$name} {
+        margin-top: $value;
+    }
+
+    .mr-#{$name} {
+        margin-right: $value;
+    }
+
+    .mb-#{$name} {
+        margin-bottom: $value;
+    }
+
+    .ml-#{$name} {
+        margin-left: $value;
+    }
+
+    @include axis-spacing(m, margin, x, $name, $value);
+    @include axis-spacing(m, margin, y, $name, $value);
+
+    // Padding
+    @include spacing(p, padding, $name, $value);
+
+    .pt-#{$name} {
+        padding-top: $value;
+    }
+
+    .pr-#{$name} {
+        padding-right: $value;
+    }
+
+    .pb-#{$name} {
+        padding-bottom: $value;
+    }
+
+    .pl-#{$name} {
+        padding-left: $value;
+    }
+
+    @include axis-spacing(p, padding, x, $name, $value);
+    @include axis-spacing(p, padding, y, $name, $value);
+
+    // Other sizing
+    .height-#{$name} {
+        height: $value;
+    }
+
+    .gap-#{$name} {
+        gap: $value;
+    }
+}
+
+// Alignment
+@each $name, $value in (center: center, start: flex-start, end: flex-end, stretch: stretch) {
+    .align-#{$name} {
+        align-items: $value;
+    }
+}
+
+// Justification
+@each $name, $value in (center: center, start: flex-start, end: flex-end, around: space-around, between: space-between, evenly: space-evenly) {
+    .justify-#{$name} {
+        justify-content: $value;
+    }
+}

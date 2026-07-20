@@ -1,0 +1,7 @@
+﻿@namespace Beauo.Components
+
+<li>@ChildContent</li>
+
+@code {
+	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+}

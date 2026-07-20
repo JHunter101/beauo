@@ -1,0 +1,28 @@
+﻿@namespace Beauo.Components
+
+@typeparam T where T : class
+
+@if (Value is null)
+{
+	@if (LoadingContent is not null)
+	{
+		@LoadingContent
+	}
+	else
+	{
+		<p>Loading...</p>
+	}
+}
+else
+{
+	@ChildContent(_output)
+}
+
+@code {
+	[Parameter, EditorRequired] public T? Value { get; set; }
+
+	[Parameter, EditorRequired] public RenderFragment<T> ChildContent { get; set; }
+	[Parameter] public RenderFragment? LoadingContent { get; set; }
+	
+	private T _output => Value ?? throw new InvalidOperationException("Value is required when rendering ChildContent.");
+}

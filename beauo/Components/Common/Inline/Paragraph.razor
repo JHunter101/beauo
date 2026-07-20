@@ -1,0 +1,12 @@
+﻿@namespace Beauo.Components
+
+<p>
+    <Text ChildContent="@ChildContent" Size="@Size" Color="@Color" Align="@Align" />
+</p>
+
+@code {
+    [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+    [Parameter] public TextSizeClass Size { get; set; } = TextSizeClass.Medium;
+    [Parameter] public FgColorVar Color { get; set; } = FgColorVar.Dark;
+    [Parameter] public TextAlignClass Align { get; set; } = TextAlignClass.Left;
+}

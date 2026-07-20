@@ -1,0 +1,30 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+:root {
+    interpolate-size: allow-keywords;
+}
+
+html {
+    font-size: clamp(16px, 2vw, 18px);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+
+body {
+    background: rgba(var(--rgb-main-bg), 1);
+    font-family: 'SF Pro Display', sans-serif;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+p,
+label {
+    display: inline-block;
+}
