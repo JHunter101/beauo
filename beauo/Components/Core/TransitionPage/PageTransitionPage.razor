@@ -1,7 +1,7 @@
 ﻿@typeparam TKey where TKey : struct, Enum
 @implements IDisposable
 
-@if (ShouldRender)
+@if (IsRelevant)
 {
 	<div class="page-transition-panel @GetStateClass()">
 		@ChildContent
@@ -13,7 +13,7 @@
 	[Parameter, EditorRequired] public TKey Key { get; set; }
 	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
 
-	private bool ShouldRender => Parent.IsActive(Key) || Parent.IsExiting(Key);
+	private bool IsRelevant => Parent.IsActive(Key) || Parent.IsExiting(Key);
 
 	protected override void OnInitialized()
 	{
