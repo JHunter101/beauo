@@ -1,8 +1,6 @@
 ﻿namespace Beauo.Types.Style.Base;
 
-public abstract class CssColor(string name) : CssVariable(name, "rgb")
+public abstract class CssColor(string name, string displayText) : CssVariable(name, "rgb", displayText)
 {
-    public abstract override string AsClass { get; }
-
-    public string AsRgbValue(int a = 1) => $"rgba({base.AsValue}, {a})";
+    public string AsRgbValue(int a = 1) => $"rgba({AsValue}, {a})";
 }

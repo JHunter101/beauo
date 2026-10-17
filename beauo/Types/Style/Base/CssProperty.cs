@@ -1,23 +1,16 @@
 ﻿namespace Beauo.Types.Style.Base;
 
-public sealed class CssProperty
+public sealed class CssProperty : Enumeration
 {
-    public static CssProperty GridTemplateColumns { get; } = new("grid-template-columns");
-    public static CssProperty Width { get; } = new("width");
-    public static CssProperty Height { get; } = new("height");
-    public static CssProperty BackgroundColor { get; } = new("background-color");
-    public static CssProperty Color { get; } = new("color");
-
-    private CssProperty(string name) => Name = name;
-
     public string Name { get; }
-    public string AsProperty => $"--{Name}";
 
-    public override string ToString()
-    {
-#if DEBUG
-        Console.WriteLine($"WARNING: ToString() called on CssProperty '{Name}'. Use {nameof(Name)} property instead.");
-#endif
-        return Name;
-    }
+    public static readonly CssProperty GridTemplateColumns = new("grid-template-columns", "Grid Template Columns");
+    public static readonly CssProperty Width = new("width", "Width");
+    public static readonly CssProperty Height = new("height", "Height");
+    public static readonly CssProperty BackgroundColor = new("background-color", "Background Color");
+    public static readonly CssProperty Color = new("color", "Color");
+
+    private CssProperty(string name, string displayText) : base(displayText) => Name = name;
+
+    public string AsProperty => $"--{Name}";
 }
