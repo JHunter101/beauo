@@ -13,7 +13,7 @@
 	[Parameter, EditorRequired] public TKey Key { get; set; }
 	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
 
-	private bool ShouldRender => Parent is not null && (Parent.IsActive(Key) || Parent.IsExiting(Key));
+	private bool ShouldRender => Parent.IsActive(Key) || Parent.IsExiting(Key);
 
 	protected override void OnInitialized()
 	{

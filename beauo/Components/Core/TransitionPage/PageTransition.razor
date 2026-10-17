@@ -45,7 +45,7 @@
         _exitingKey = previousKey;
         _activeKey = ActiveKey;
 
-        _cts?.Cancel();
+        _cts?.CancelAsync();
         _cts?.Dispose();
 
         _cts = new CancellationTokenSource();
