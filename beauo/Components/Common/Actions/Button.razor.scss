@@ -1,5 +1,5 @@
 button {
-    padding: var(--size-8x) var(--size-12x);
+    padding: var(--size-4x) var(--size-12x);
     font-weight: 500;
     color: rgb(var(--rgb-alt-fg));
     background-color: rgb(var(--rgb-alt-bg));
@@ -7,10 +7,6 @@ button {
     border-radius: 8px;
     text-decoration: none;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-
-    &.slim {
-        padding-block: var(--size-4x);
-    }
 
     &:hover {
         background-color: #374151;
