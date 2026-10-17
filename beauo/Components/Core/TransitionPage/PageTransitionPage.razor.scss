@@ -1,0 +1,79 @@
+.page-transition-panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Forward Animations (Slide Up) */
+@keyframes slideOutUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Backward Animations (Slide Down) */
+@keyframes slideOutDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.exiting.forward {
+    animation: slideOutUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.active.forward {
+    animation: slideInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    z-index: 1;
+}
+
+.exiting.backward {
+    animation: slideOutDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.active.backward {
+    animation: slideInDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    z-index: 1;
+}

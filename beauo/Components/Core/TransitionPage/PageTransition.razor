@@ -1,0 +1,83 @@
+﻿@using Web.Client.Pages
+@typeparam TKey where TKey : struct, Enum
+@implements IDisposable
+
+<div class="page-transition-viewport">
+    <CascadingValue Value="this" IsFixed="true">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+@code {
+	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+	[Parameter, EditorRequired] public TKey ActiveKey { get; set; }
+
+	private readonly HashSet<PageTransitionPage<TKey>> _pages = new();
+
+	private TKey? _activeKey;
+	private TKey? _exitingKey;
+	private TransitionDirection _direction = TransitionDirection.Forward;
+	private CancellationTokenSource? _cts;
+
+	internal event Action? StateChanged;
+
+	internal TransitionDirection Direction => _direction;
+
+	internal void RegisterPage(PageTransitionPage<TKey> page) =>
+		_pages.Add(page);
+
+	internal void UnregisterPage(PageTransitionPage<TKey> page) =>
+		_pages.Remove(page);
+
+	protected override async Task OnParametersSetAsync()
+	{
+		if (IsActive(ActiveKey))
+		{
+			return;
+		}
+
+        var previousKey = _activeKey;
+
+        _direction = Convert.ToInt64(ActiveKey) >= Convert.ToInt64(previousKey)
+            ? TransitionDirection.Forward
+            : TransitionDirection.Backward;
+
+        _exitingKey = previousKey;
+        _activeKey = ActiveKey;
+
+        _cts?.Cancel();
+        _cts?.Dispose();
+
+        _cts = new CancellationTokenSource();
+
+        StateChanged?.Invoke();
+
+        await RunExitAnimationAsync(_cts.Token);
+    }
+
+    private async Task RunExitAnimationAsync(CancellationToken token)
+    {
+        try
+        {
+            await Task.Delay(800, token);
+
+            _exitingKey = null;
+
+            await InvokeAsync(() => StateChanged?.Invoke());
+        }
+        catch (OperationCanceledException)
+        {
+            // A newer transition superseded this one.
+        }
+    }
+
+	internal bool IsActive(TKey key) => _activeKey.HasValue &&		EqualityComparer<TKey>.Default.Equals(_activeKey.Value, key);
+
+	internal bool IsExiting(TKey key) => _exitingKey.HasValue &&		EqualityComparer<TKey>.Default.Equals(_exitingKey.Value, key);
+
+    public void Dispose()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
+    }
+}
