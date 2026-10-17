@@ -1,0 +1,21 @@
+@using beauo.stories.ParameterControllers
+@attribute [Stories("Examples/DateText")]
+
+<Stories TComponent="DateText<DateTime>" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Value">
+        <DateParameterController />
+    </ArgType>
+    <ArgType For="_ => _.Format" />
+
+    <Story Name="Today">
+        <Arguments>
+            <Arg For="_ => _.Value" Value="@(DateTime.Now)" />
+            <Arg For="_ => _.Format" Value='"yyyy-MM-dd"' />
+        </Arguments>
+        <Template>
+            <DateText T="DateTime" @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>

@@ -1,0 +1,91 @@
+@attribute [Stories("Examples/Button")]
+
+@using Beauo.Types.Style.Classes
+
+<Stories TComponent="Button" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Text" />
+    <ArgType For="_ => _.Size" Control="ControlType.Radio" />
+    <ArgType For="_ => _.IconLeft" />
+
+    <Story Name="Default">
+        <Arguments>
+            <Arg For="_ => _.Text" Value='"Default"' />
+        </Arguments>
+        <Template>
+            <Button @attributes="context.Args" OnClick="OnClickHandler">
+            </Button>
+        </Template>
+    </Story>
+
+    <Story Name="Interactive">
+        <Arguments>
+            <Arg For="_ => _.Text" Value='"Click Me"' />
+        </Arguments>
+        <Template>
+            <div>
+                <Button Text="@_interactiveText" OnClick="OnInteractiveClick" />
+                <Text>@_interactiveText</Text>
+            </div>
+        </Template>
+    </Story>
+
+    <Story Name="Large">	
+        <Arguments>
+            <Arg For="_ => _.Text" Value='"Large"' />
+            <Arg For="_ => _.Size" Value="TextSizeClass.Large" />
+        </Arguments>
+        <Template>
+            <Button @attributes="context.Args" OnClick="OnClickHandler">
+            </Button>
+        </Template>
+    </Story>
+
+    <Story Name="With Icon">
+        <Arguments>
+            <Arg For="_ => _.Text" Value='"With Icon"' />
+            <Arg For="_ => _.Icon" Value="_icon" />
+        </Arguments>
+        <Template>
+            <Button @attributes="context.Args" OnClick="OnClickHandler">
+            </Button>
+        </Template>
+    </Story>
+
+    <Story Name="Icon Left">
+        <Arguments>
+            <Arg For="_ => _.Text" Value='"Icon Left"' />
+            <Arg For="_ => _.IconLeft" Value="true" />
+            <Arg For="_ => _.Icon" Value="_icon" />
+        </Arguments>
+        <Template>
+            <Button @attributes="context.Args" OnClick="OnClickHandler">
+            </Button>
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    // Simple inline SVG used as the icon in stories.
+    private RenderFragment _icon = @<text>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+            <path d="M8 12l2 2 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </text>;
+
+    private void OnClickHandler(MouseEventArgs _)
+    {
+        // Intentionally left blank for story preview (no-op click handler).
+    }
+
+    private int _clickCount = 0;
+    private string _interactiveText = "Click Me";
+    private void OnInteractiveClick(MouseEventArgs _)
+    {
+        _clickCount++;
+        _interactiveText = $"Clicked {_clickCount}x";
+    }
+
+}

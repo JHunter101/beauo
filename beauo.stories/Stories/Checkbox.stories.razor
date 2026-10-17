@@ -1,0 +1,52 @@
+@attribute [Stories("Examples/Checkbox")]
+
+<Stories TComponent="Checkbox" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Value" />
+    <ArgType For="_ => _.IsDisabled" />
+    <ArgType For="_ => _.ChildContent" />
+
+    <Story Name="Unchecked">
+        <Arguments>
+            <Arg For="_ => _.Value" Value="false" />
+            <Arg For="_ => _.ChildContent" Value="_label" />
+        </Arguments>
+        <Template>
+            <Checkbox @attributes="context.Args" />
+        </Template>
+    </Story>
+
+    <Story Name="Interactive">
+        <Template>
+            <div>
+                <Checkbox Value="@_checked" ValueChanged="@((bool v) => OnToggle(v))">
+                    @_label
+                </Checkbox>
+                <Text>@($"Toggles: {_toggleCount}")</Text>
+            </div>
+        </Template>
+    </Story>
+
+    <Story Name="Checked">
+        <Arguments>
+            <Arg For="_ => _.Value" Value="true" />
+            <Arg For="_ => _.ChildContent" Value="_label" />
+        </Arguments>
+        <Template>
+            <Checkbox @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _label = @<text>Enable feature</text>;
+    private bool _checked = false;
+    private int _toggleCount = 0;
+
+    private void OnToggle(bool v)
+    {
+        _checked = v;
+        _toggleCount++;
+    }
+}

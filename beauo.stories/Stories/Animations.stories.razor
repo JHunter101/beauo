@@ -1,0 +1,47 @@
+@attribute [Stories("Examples/Animations")]
+
+<Stories TComponent="FlipWrapper" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.ChildContent" />
+
+    <Story Name="Flip">
+        <Arguments>
+            <Arg For="_ => _.ChildContent" Value="_content" />
+        </Arguments>
+        <Template>
+            <div>
+                <FlipWrapper @attributes="context.Args">
+                    <Button Text="Toggle" OnClick="OnAnimClick" />
+                </FlipWrapper>
+                <Text>@($"Clicks: {_animClicks}")</Text>
+            </div>
+        </Template>
+    </Story>
+
+    <Story Name="Shake">
+        <Arguments>
+            <Arg For="_ => _.ChildContent" Value="_content" />
+        </Arguments>
+        <Template>
+            <div>
+                <ShakeWrapper @attributes="context.Args">
+                    <Button Text="Toggle" OnClick="OnAnimClick" />
+                </ShakeWrapper>
+                <Text>@($"Clicks: {_animClicks}")</Text>
+            </div>
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _content = @<text>
+        <div style="padding:8px;border:1px dashed var(--bs-docs-text,#888);display:inline-block">Animated content</div>
+    </text>;
+
+    private int _animClicks = 0;
+    private void OnAnimClick(Microsoft.AspNetCore.Components.Web.MouseEventArgs _)
+    {
+        _animClicks++;
+    }
+}

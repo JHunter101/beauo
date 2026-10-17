@@ -1,0 +1,26 @@
+@attribute [Stories("Examples/Container")]
+
+<Stories TComponent="Container" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Title" />
+    <ArgType For="_ => _.Subtitle" />
+    <ArgType For="_ => _.ChildContent" />
+
+    <Story Name="Default">
+        <Arguments>
+            <Arg For="_ => _.Title" Value="_title" />
+            <Arg For="_ => _.Subtitle" Value="_subtitle" />
+            <Arg For="_ => _.ChildContent" Value="_content" />
+        </Arguments>
+        <Template>
+            <Container @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _title = @<text><Heading Level="2">Section</Heading></text>;
+    private RenderFragment _subtitle = @<text><Text>Subtitle</Text></text>;
+    private RenderFragment _content = @<text><Paragraph>Container content goes here.</Paragraph></text>;
+}

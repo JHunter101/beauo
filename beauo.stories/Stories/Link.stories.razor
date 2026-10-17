@@ -1,0 +1,31 @@
+@attribute [Stories("Examples/Link")]
+
+<Stories TComponent="Link" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Text" />
+    <ArgType For="_ => _.Href" />
+    <ArgType For="_ => _.AsButton" />
+
+    <Story Name="Anchor">
+        <Arguments>
+            <Arg For="_ => _.Href" Value='"https://example.com"' />
+            <Arg For="_ => _.Text" Value='"Visit Example"' />
+            <Arg For="_ => _.AsButton" Value="false" />
+        </Arguments>
+        <Template>
+            <Link @attributes="context.Args" />
+        </Template>
+    </Story>
+
+    <Story Name="As Button">
+        <Arguments>
+            <Arg For="_ => _.Href" Value='"/home"' />
+            <Arg For="_ => _.Text" Value='"Go Home"' />
+            <Arg For="_ => _.AsButton" Value="true" />
+        </Arguments>
+        <Template>
+            <Link @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>
