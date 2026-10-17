@@ -86,10 +86,14 @@ jobs:
       - name: Pack Package
         run: dotnet pack beauo/beauo.csproj -c Release -o nupkg /p:Version=${{ steps.version.outputs.version }}
 
+      - name: NuGet Login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: JHunter101 
+
       - name: Push to NuGet
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push nupkg/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push nupkg/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Create GitHub Release
         if: steps.version.outputs.is_prerelease == 'false'
