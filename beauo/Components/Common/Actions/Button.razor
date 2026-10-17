@@ -18,8 +18,9 @@
 	[Parameter] public RenderFragment? Icon { get; set; }
 
 	[Parameter] public bool IconLeft { get; set; } = false;
+	[Parameter] public bool Thick { get; set; } = false;
 
     [Parameter, EditorRequired] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
-    private string ClassNames => $"{Size?.Name} {(Slim ? "slim" : null)}".Trim();
+    private string ClassNames => $"{Size?.Name} {(Thick ? "thick" : null)}".Trim();
 }
