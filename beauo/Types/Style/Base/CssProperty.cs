@@ -2,15 +2,15 @@
 
 public sealed class CssProperty : Enumeration
 {
-    public string Name { get; }
+    private readonly string _name;
 
-    public static readonly CssProperty GridTemplateColumns = new("grid-template-columns", "Grid Template Columns");
-    public static readonly CssProperty Width = new("width", "Width");
-    public static readonly CssProperty Height = new("height", "Height");
-    public static readonly CssProperty BackgroundColor = new("background-color", "Background Color");
-    public static readonly CssProperty Color = new("color", "Color");
+    public override string ToString() => _name;
 
-    private CssProperty(string name, string displayText) : base(displayText) => Name = name;
+    public static readonly CssProperty GridTemplateColumns = new("grid-template-columns");
+    public static readonly CssProperty Width = new("width");
+    public static readonly CssProperty Height = new("height");
+    public static readonly CssProperty BackgroundColor = new("background-color");
+    public static readonly CssProperty Color = new("color");
 
-    public string AsProperty => $"--{Name}";
+    private CssProperty(string name) : base(name) => _name = name;
 }

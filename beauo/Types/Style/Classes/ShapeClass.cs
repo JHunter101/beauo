@@ -4,9 +4,9 @@ namespace Beauo.Types.Style.Classes;
 
 public sealed class ShapeClass : CssClass
 {
-    public static readonly ShapeClass Tag = new("tag", "Tag");
+    public static readonly ShapeClass Tag = new("tag");
 
-    private ShapeClass(string classname, string displayText) : base(classname, displayText)
+    private ShapeClass(string classname) : base(classname)
     {
     }
 }

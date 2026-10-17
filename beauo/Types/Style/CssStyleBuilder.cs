@@ -6,19 +6,13 @@ public sealed class CssStyleBuilder
 {
     private readonly List<string> _styles = [];
 
-    public CssStyleBuilder AddVariable(CssProperty property, CssVariable? value) =>
-        Add(property.AsProperty, value?.AsValue);
+    public CssStyleBuilder AddStyle(CssProperty property, CssVariable? value)
+        => Add(property, value?.AsValue);
 
-    public CssStyleBuilder AddVariable(CssProperty property, string? value) =>
-        Add(property.AsProperty, value);
+    public CssStyleBuilder AddStyle(CssProperty property, string? value)
+        => Add(property, value);
 
-    public CssStyleBuilder AddStyle(CssProperty property, CssVariable? value) =>
-        Add(property.Name, value?.AsValue);
-
-    public CssStyleBuilder AddStyle(CssProperty property, string? value) =>
-        Add(property.Name, value);
-
-    private CssStyleBuilder Add(string property, string? value)
+    private CssStyleBuilder Add(CssProperty property, string? value)
     {
         if (value is not null)
         {

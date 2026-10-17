@@ -1,6 +1,8 @@
 ﻿namespace Beauo.Types.Style.Base;
 
-public abstract class CssClass(string className, string displayText) : Enumeration(displayText)
+public abstract class CssClass(string className) : Enumeration(className)
 {
-    public string Name { get; } = className;
+    private readonly string _name = className;
+
+    public override string ToString() => _name;
 }

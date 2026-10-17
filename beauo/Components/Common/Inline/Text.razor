@@ -8,5 +8,5 @@
 	[Parameter]	public TextAlignClass Align { get; set; } = TextAlignClass.Inherit;	
 	[Parameter] public FgColorVar? Color { get; set; }
 
-	private string ClassNames => $"{Size.Name} {Color?.AsClass} {Align.Name}".Trim();
+	private string ClassNames => $"{Size} {Color?.AsClass} {Align}".Trim();
 }
