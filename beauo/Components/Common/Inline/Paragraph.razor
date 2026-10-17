@@ -9,6 +9,6 @@
 @code {
     [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
     [Parameter] public TextSizeClass Size { get; set; } = TextSizeClass.Medium;
-    [Parameter] public FgColorVar Color { get; set; } = FgColorVar.Dark;
+    [Parameter] public FgColorVar? Color { get; set; }
     [Parameter] public TextAlignClass Align { get; set; } = TextAlignClass.Left;
 }

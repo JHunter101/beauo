@@ -1,8 +1,8 @@
 button {
     padding: var(--size-8x) var(--size-12x);
     font-weight: 500;
-    color: #fff;
-    background-color: #111827;
+    color: var(--rgb-main-bg);
+    background-color: var(--rgb-main-fg);
     border: none;
     border-radius: 8px;
     text-decoration: none;
