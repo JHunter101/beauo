@@ -17,7 +17,7 @@ public sealed class SizeVar : CssVariable
     public static readonly SizeVar Size96 = new("96x", "96x");
     public static readonly SizeVar Size128 = new("128x", "128x");
 
-    private SizeVar(string type, string displayText) : base(type, displayText, "size")
+    private SizeVar(string type, string displayText) : base(type, "size", displayText)
     {
     }
 }
