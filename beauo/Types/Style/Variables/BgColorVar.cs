@@ -16,39 +16,39 @@ public sealed class BgColorVar : CssColor
 
     public static readonly BgColorVar Grey = new("grey", "Grey", FgColorVar.White);
     public static readonly BgColorVar GreyLight = new("grey-light", "Grey Light", FgColorVar.Dark);
-    public static readonly BgColorVar GreyDark = new("grey-dark", "Grey Dark", FgColorVar.Light);
+    public static readonly BgColorVar GreyDark = new("grey-dark", "Grey Dark", FgColorVar.White);
 
     public static readonly BgColorVar Red = new("red", "Red", FgColorVar.White);
     public static readonly BgColorVar RedLight = new("red-light", "Red Light", FgColorVar.Dark);
-    public static readonly BgColorVar RedDark = new("red-dark", "Red Dark", FgColorVar.Light);
+    public static readonly BgColorVar RedDark = new("red-dark", "Red Dark", FgColorVar.White);
 
     public static readonly BgColorVar Orange = new("orange", "Orange", FgColorVar.White);
     public static readonly BgColorVar OrangeLight = new("orange-light", "Orange Light", FgColorVar.Dark);
-    public static readonly BgColorVar OrangeDark = new("orange-dark", "Orange Dark", FgColorVar.Light);
+    public static readonly BgColorVar OrangeDark = new("orange-dark", "Orange Dark", FgColorVar.White);
 
     public static readonly BgColorVar Yellow = new("yellow", "Yellow", FgColorVar.White);
     public static readonly BgColorVar YellowLight = new("yellow-light", "Yellow Light", FgColorVar.Dark);
-    public static readonly BgColorVar YellowDark = new("yellow-dark", "Yellow Dark", FgColorVar.Light);
+    public static readonly BgColorVar YellowDark = new("yellow-dark", "Yellow Dark", FgColorVar.White);
 
     public static readonly BgColorVar Green = new("green", "Green", FgColorVar.White);
     public static readonly BgColorVar GreenLight = new("green-light", "Green Light", FgColorVar.Dark);
-    public static readonly BgColorVar GreenDark = new("green-dark", "Green Dark", FgColorVar.Light);
+    public static readonly BgColorVar GreenDark = new("green-dark", "Green Dark", FgColorVar.White);
 
     public static readonly BgColorVar Cyan = new("cyan", "Cyan", FgColorVar.White);
     public static readonly BgColorVar CyanLight = new("cyan-light", "Cyan Light", FgColorVar.Dark);
-    public static readonly BgColorVar CyanDark = new("cyan-dark", "Cyan Dark", FgColorVar.Light);
+    public static readonly BgColorVar CyanDark = new("cyan-dark", "Cyan Dark", FgColorVar.White);
 
     public static readonly BgColorVar Blue = new("blue", "Blue", FgColorVar.White);
     public static readonly BgColorVar BlueLight = new("blue-light", "Blue Light", FgColorVar.Dark);
-    public static readonly BgColorVar BlueDark = new("blue-dark", "Blue Dark", FgColorVar.Light);
+    public static readonly BgColorVar BlueDark = new("blue-dark", "Blue Dark", FgColorVar.White);
 
     public static readonly BgColorVar Purple = new("purple", "Purple", FgColorVar.White);
     public static readonly BgColorVar PurpleLight = new("purple-light", "Purple Light", FgColorVar.Dark);
-    public static readonly BgColorVar PurpleDark = new("purple-dark", "Purple Dark", FgColorVar.Light);
+    public static readonly BgColorVar PurpleDark = new("purple-dark", "Purple Dark", FgColorVar.White);
 
     public static readonly BgColorVar Pink = new("pink", "Pink", FgColorVar.White);
     public static readonly BgColorVar PinkLight = new("pink-light", "Pink Light", FgColorVar.Dark);
-    public static readonly BgColorVar PinkDark = new("pink-dark", "Pink Dark", FgColorVar.Light);
+    public static readonly BgColorVar PinkDark = new("pink-dark", "Pink Dark", FgColorVar.White);
 
     public override string AsClass => $"bg-color-{Name}";
 
