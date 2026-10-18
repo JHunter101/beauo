@@ -1,0 +1,12 @@
+﻿@namespace Beauo.Components
+
+<Column>
+	<Heading>@Title</Heading>
+
+	@ChildContent
+</Column>
+
+@code {
+    [Parameter, EditorRequired] public string Title { get; set; }
+    [Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+}

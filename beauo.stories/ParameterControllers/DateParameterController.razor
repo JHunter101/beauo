@@ -1,0 +1,44 @@
+@using BlazingStory.Addons.BuiltIns.Panel.Controls.ParameterControllers.Controllers
+@inherits ParameterControllerBase
+
+<input type="date" value="@GetValueString()" @onchange="OnChange" />
+
+@code {
+    private string GetValueString()
+    {
+        var val = this.Context.Value;
+        if (val == null) return string.Empty;
+        if (val is DateOnly d) return d.ToString("yyyy-MM-dd");
+        if (val is DateTime dt) return dt.ToString("yyyy-MM-dd");
+        try
+        {
+            var asDt = Convert.ToDateTime(val);
+            return asDt.ToString("yyyy-MM-dd");
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    }
+
+    private async Task OnChange(ChangeEventArgs e)
+    {
+        var s = e?.Value?.ToString();
+        if (string.IsNullOrEmpty(s))
+        {
+            await this.OnInputAsync(null);
+            return;
+        }
+
+        if (!DateTime.TryParse(s, out var dt))
+        {
+            await this.OnInputAsync(null);
+            return;
+        }
+
+        // We don't always have the parameter type available via Context.Parameter in all versions,
+        // so default to DateTime which is the most common scenario in stories. If the consumer
+        // expects DateOnly they can use a DateOnly-specific story or the component's own Arg value.
+        await this.OnInputAsync(dt);
+    }
+}

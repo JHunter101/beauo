@@ -1,0 +1,17 @@
+﻿@namespace Beauo.Components
+
+<section>
+	<div class="header">
+		<Column Gap="GapClass.Tiny">
+			@Title
+			@Subtitle
+		</Column>
+	</div>
+	<div class="content">@ChildContent</div>
+</section>
+
+@code {
+	[Parameter, EditorRequired] public RenderFragment Title { get; set; } = default!;
+	[Parameter] public RenderFragment? Subtitle { get; set; }
+	[Parameter] public RenderFragment? ChildContent { get; set; }
+}

@@ -1,0 +1,27 @@
+button {
+    padding: var(--size-4x) var(--size-12x);
+    font-weight: 500;
+    color: rgb(var(--rgb-alt-fg));
+    background-color: rgb(var(--rgb-alt-bg));
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+    &.thick {
+        padding-block: var(--size-8x)
+    }
+
+    &:hover {
+        background-color: rgb(var(--rgb-alt-bg), 0.85);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+    }
+
+    &:active {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    ::deep svg {
+        height: 1lh;
+    }
+}

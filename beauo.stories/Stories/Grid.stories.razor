@@ -1,0 +1,50 @@
+@attribute [Stories("Examples/Grid")]
+
+@using Beauo.Types.Style.Variables
+
+<Stories TComponent="Grid" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Columns" />
+
+    <Story Name="Three Columns">
+        <Arguments>
+            <Arg For="_ => _.Columns" Value="3" />
+        </Arguments>
+        <Template>
+            <Grid @attributes="context.Args">
+                @_cells
+            </Grid>
+        </Template>
+    </Story>
+
+    <Story Name="Two Columns Wide">
+        <Arguments>
+            <Arg For="_ => _.Columns" Value="2" />
+        </Arguments>
+        <Template>
+            <Grid @attributes="context.Args" ColumnMaxWidth="SizeVar.Size48">
+                @_cells
+            </Grid>
+        </Template>
+    </Story>
+
+    <Story Name="Four Columns Narrow">
+        <Arguments>
+            <Arg For="_ => _.Columns" Value="4" />
+        </Arguments>
+        <Template>
+            <Grid @attributes="context.Args" ColumnMaxWidth="SizeVar.Size16">
+                @_cells
+            </Grid>
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _cells = @<text>
+        <Column><Paragraph>Cell 1</Paragraph></Column>
+        <Column><Paragraph>Cell 2</Paragraph></Column>
+        <Column><Paragraph>Cell 3</Paragraph></Column>
+    </text>;
+}

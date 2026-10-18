@@ -1,0 +1,53 @@
+﻿@namespace Beauo.Components.Settings
+
+@typeparam TValue where TValue : notnull
+
+<Fieldset Label="@Label" IsDisabled="@IsDisabled">
+	<Column>
+		@foreach (var option in Options)
+		{
+			var currentOption = option;
+
+			<Checkbox Value="@Values.Contains(currentOption)"
+					  ValueChanged="@(value => ToggleOption(currentOption, value))">
+				@if (ChildContent != null)
+				{
+					@ChildContent(option)
+				}
+				else
+				{
+					@option.ToString()
+				}
+			</Checkbox>
+		}
+	</Column>
+</Fieldset>
+
+@code {
+	[Parameter, EditorRequired] public HashSet<TValue> Values { get; set; }
+	[Parameter, EditorRequired] public EventCallback<HashSet<TValue>> ValuesChanged { get; set; }
+
+	[Parameter, EditorRequired] public string Label { get; set; }
+	[Parameter, EditorRequired] public HashSet<TValue> Options { get; set; }
+
+	[Parameter] public bool IsDisabled { get; set; }
+	[Parameter] public Func<TValue, bool>? IsOptionDisabled { get; set; }
+
+	[Parameter] public RenderFragment<TValue>? ChildContent { get; set; }
+
+	private async Task ToggleOption(TValue option, bool selected)
+	{
+		var newValues = new HashSet<TValue>(Values);
+
+		if (selected)
+		{
+			newValues.Add(option);
+		}
+		else
+		{
+			newValues.Remove(option);
+		}
+
+		await ValuesChanged.InvokeAsync(newValues);
+	}
+}

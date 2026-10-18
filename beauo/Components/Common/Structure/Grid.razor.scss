@@ -1,0 +1,5 @@
+.grid {
+    display: grid;
+    width: var(--width);
+    grid-template-columns: var(--grid-template-columns);
+}

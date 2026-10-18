@@ -1,0 +1,26 @@
+@attribute [Stories("Examples/Paragraph")]
+
+@using Beauo.Types.Style.Classes
+@using Beauo.Types.Style.Variables
+
+<Stories TComponent="Paragraph" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.ChildContent" />
+    <ArgType For="_ => _.Size" Control="ControlType.Radio" />
+    <ArgType For="_ => _.Color" />
+    <ArgType For="_ => _.Align" />
+
+    <Story Name="Default">
+        <Arguments>
+            <Arg For="_ => _.ChildContent" Value="_content" />
+        </Arguments>
+        <Template>
+            <Paragraph @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _content = @<text>This is a paragraph of text used for documentation and examples.</text>;
+}

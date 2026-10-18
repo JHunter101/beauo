@@ -1,0 +1,10 @@
+﻿@namespace Beauo.Components.Core
+
+<div class="@((NoScroll ? "no-scroll" : ""))">
+	@ChildContent
+</div>
+
+@code {
+	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+	[Parameter] public bool NoScroll { get; set; }
+}

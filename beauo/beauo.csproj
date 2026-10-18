@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>beauo</AssemblyName>
+    <PackageId>beauo</PackageId>
+    <RootNamespace>Beauo</RootNamespace>
+    <Version>1.0.0</Version>
+    <Authors>JHunter101</Authors>
+    <RepositoryUrl>https://github.com/JHunter101/beauo</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup>
+   <PackageIcon>icon.png</PackageIcon>
+   <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+   <None Include="../icon.png" Pack="true" PackagePath="\" />
+   <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.10" />
+    <PackageReference Include="AspNetCore.SassCompiler" Version="1.101.0" PrivateAssets="all" />
+  </ItemGroup>
+
+	<Target Name="BundleAdditionalCss" BeforeTargets="BundleScopedCssFiles" AfterTargets="_CollectAllScopedCssAssets">
+		<ItemGroup>
+			<_DiscoverdScopedCssFiles Include="css/load.css" />
+		</ItemGroup>
+	</Target>
+
+</Project>

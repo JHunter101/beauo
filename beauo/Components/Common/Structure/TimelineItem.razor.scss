@@ -1,0 +1,16 @@
+.meta {
+    flex-shrink: 0;
+    display: flex;
+    gap: var(--size-8x);
+    flex-direction: row;
+    padding: var(--size-8x) var(--size-16x);
+}
+
+@media (min-width: 768px) {
+    .meta {
+        flex-direction: column;
+        margin-top: var(--size-8x);
+        align-items: flex-end;
+        gap: var(--size-2x);
+    }
+}

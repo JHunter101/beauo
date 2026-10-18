@@ -1,0 +1,10 @@
+section {
+    .header {
+        padding: var(--size-8x) var(--size-16x);
+    }
+
+    & > .content {
+        border-top: 1px solid var(--rgb-light);
+        padding: var(--size-8x) var(--size-16x) var(--size-8x) var(--size-16x);
+    }
+}

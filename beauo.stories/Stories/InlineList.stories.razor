@@ -1,0 +1,24 @@
+@attribute [Stories("Examples/InlineList")]
+
+<Stories TComponent="InlineList" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.ChildContent" />
+
+    <Story Name="Default">
+        <Arguments>
+            <Arg For="_ => _.ChildContent" Value="_items" />
+        </Arguments>
+        <Template>
+            <InlineList @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _items = @<text>
+        <InlineListItem>First</InlineListItem>
+        <InlineListItem>Second</InlineListItem>
+        <InlineListItem>Third</InlineListItem>
+    </text>;
+}

@@ -1,0 +1,27 @@
+@attribute [Stories("Examples/Timeline")]
+
+<Stories TComponent="Timeline" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Title" />
+    <ArgType For="_ => _.ChildContent" />
+
+    <Story Name="Release Notes">
+        <Arguments>
+            <Arg For="_ => _.Title" Value='"Releases"' />
+        </Arguments>
+        <Template>
+            <Timeline Title="Releases">
+                <TimelineItem>
+                    <Date>
+                        <DateText Value="@(DateTime.Now)" />
+                    </Date>
+                    <Title>
+                        <Text>Release 1.0</Text>
+                    </Title>
+                </TimelineItem>
+            </Timeline>
+        </Template>
+    </Story>
+
+</Stories>
+

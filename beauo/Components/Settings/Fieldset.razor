@@ -1,0 +1,14 @@
+﻿@namespace Beauo.Components.Settings
+
+<fieldset disabled="@IsDisabled">
+	<legend>@Label</legend>
+
+	@ChildContent
+</fieldset>
+
+@code {
+	[Parameter, EditorRequired] public string Label { get; set; }
+	[Parameter] public bool IsDisabled { get; set; }
+
+	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+}

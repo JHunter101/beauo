@@ -1,0 +1,20 @@
+﻿@namespace Beauo.Components
+
+<StackResponsive Gap="GapClass.Tiny">
+	<div class="meta">
+		@Date
+		@Extras
+	</div>
+	
+	<Container Title="Title" Subtitle="Subtitle" ChildContent="ExpandedContent" />
+</StackResponsive>
+
+<HR/>
+
+@code {
+	[Parameter, EditorRequired] public RenderFragment Date { get; set; }
+	[Parameter, EditorRequired] public RenderFragment Title { get; set; }
+	[Parameter] public RenderFragment? Subtitle { get; set; }
+	[Parameter] public RenderFragment? ExpandedContent { get; set; }
+	[Parameter] public RenderFragment? Extras { get; set; }
+}

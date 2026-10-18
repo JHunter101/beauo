@@ -1,0 +1,22 @@
+﻿@namespace Beauo.Components
+
+@using Beauo.Types.Style
+
+<div class="grid @Gap @Align @Justify"
+	 style="@GridStyle">
+	@ChildContent
+</div>
+
+@code {
+	[Parameter, EditorRequired] public required RenderFragment ChildContent { get; set; }
+	[Parameter, EditorRequired] public int Columns { get; set; }
+	[Parameter] public SizeVar? ColumnMaxWidth { get; set; }
+	[Parameter] public GapClass Gap { get; set; } = GapClass.Medium;
+	[Parameter] public AlignItemsClass Align { get; set; } = AlignItemsClass.Center;
+	[Parameter] public JustifyContentClass Justify { get; set; } = JustifyContentClass.Center;
+	
+	private string GridStyle => new CssStyleBuilder()
+		.AddStyle(CssProperty.GridTemplateColumns, $"repeat({Columns}, 1fr)")
+		.AddStyle(CssProperty.Width, ColumnMaxWidth != null ? $"min(100%, calc({Columns} * {ColumnMaxWidth.AsValue}))" : null)
+		.ToString();
+}

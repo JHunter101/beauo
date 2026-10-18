@@ -1,0 +1,69 @@
+﻿@namespace Beauo.Components.Documentation
+
+@using Beauo.Types.Contents
+
+<TimelineItem>
+	<Date>
+		<DateText Value="@Date" Color="FgColorVar.Grey" />
+	</Date>
+
+	<Title>
+		<Heading Level="2">Release @($"{Major}.{Minor}.{Patch}")</Heading>
+	</Title>
+
+	<Subtitle>
+		<Text Color="FgColorVar.Grey" Align="TextAlignClass.Left">@Overview</Text>
+	</Subtitle>
+
+	<Extras>
+		<Row Wrap>
+		@foreach (var tag in Tags)
+		{
+			
+			<Shape Type="ShapeClass.Tag" Content="@tag" Size="TextSizeClass.Medium" />
+			}
+		</Row>
+	</Extras>
+
+	<ExpandedContent>
+		<Column>
+			@if (New is not null)
+			{
+				<div>
+					<Heading Level="3" Size="@TextSizeClass.Medium">What's New</Heading>
+					@New
+				</div>
+			}
+
+			@if (Changed is not null)
+			{
+				<div>
+					<Heading Level="3" Size="@TextSizeClass.Medium">What's Changed</Heading>
+					@Changed
+				</div>
+			}
+
+			@if (Fixes is not null)
+			{
+				<div>
+					<Heading Level="3" Size="@TextSizeClass.Medium">Fixes</Heading>
+					@Fixes
+				</div>
+			}
+		</Column>
+	</ExpandedContent>
+</TimelineItem>
+
+@code {
+	[Parameter, EditorRequired] public int Major { get; set; }
+	[Parameter, EditorRequired] public int Minor { get; set; }
+	[Parameter, EditorRequired] public int Patch { get; set; }
+	[Parameter, EditorRequired] public DateOnly Date { get; set; }
+
+	[Parameter] public IReadOnlyList<ShapeContent> Tags { get; set; } = [];
+
+	[Parameter] public RenderFragment? Overview { get; set; }
+	[Parameter] public RenderFragment? New { get; set; }
+	[Parameter] public RenderFragment? Changed { get; set; }
+	[Parameter] public RenderFragment? Fixes { get; set; }
+}

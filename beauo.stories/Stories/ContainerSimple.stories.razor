@@ -1,0 +1,27 @@
+@attribute [Stories("Examples/BeauoPage")]
+
+@using Beauo.Types.Style.Classes
+
+<Stories TComponent="BeauoPage" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.ChildContent" />
+
+    <Story Name="Simple Page">
+        <Arguments>
+            <Arg For="_ => _.ChildContent" Value="_content" />
+        </Arguments>
+        <Template>
+            <BeauoPage @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _content = @<text>
+        <Column Align="AlignItemsClass.Center" Justify="JustifyContentClass.Center">
+            <Heading Level="1">Page</Heading>
+            <Paragraph>Sample page content.</Paragraph>
+        </Column>
+    </text>;
+}

@@ -1,0 +1,16 @@
+fieldset {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: var(--size-12x) var(--size-16x);
+    margin: 0;
+
+    legend {
+        font-weight: 500;
+        padding: 0 0.5rem;
+        color: #374151;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+    }
+}

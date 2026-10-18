@@ -1,0 +1,35 @@
+@attribute [Stories("Examples/Loader")]
+
+<Stories TComponent="Loader<object>" Layout="typeof(CenteredLayout)">
+
+	<ArgType For="_ => _.LoadingContent" />
+	<ArgType For="_ => _.Value" />
+	<ArgType For="_ => _.ChildContent" />
+
+	<Story Name="Loading">
+		<Arguments>
+			<Arg For="_ => _.Value" Value="null" />
+			<Arg For="_ => _.LoadingContent" Value="_loading" />
+		</Arguments>
+       <Template Context="storyContext">
+			<Loader T="object" @attributes="storyContext.Args" />
+		</Template>
+	</Story>
+
+	<Story Name="Loaded">
+		<Arguments>
+			<Arg For="_ => _.Value" Value="_data" />
+			<Arg For="_ => _.ChildContent" Value="_childContent" />
+		</Arguments>
+       <Template Context="storyContext">
+			<Loader T="object" @attributes="storyContext.Args" />
+		</Template>
+	</Story>
+
+</Stories>
+
+@code {
+	private RenderFragment _loading = @<text>Loading...</text>;
+	private RenderFragment<object> _childContent = _ => @<text>ChildContent</text>;
+	private object _data = new { Message = "Hello" };
+}

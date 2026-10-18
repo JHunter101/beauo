@@ -1,0 +1,38 @@
+@attribute [Stories("Examples/Text")]
+
+@using Beauo.Types.Style.Classes
+@using Beauo.Types.Style.Variables
+
+<Stories TComponent="Text" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.ChildContent" />
+    <ArgType For="_ => _.Size" Control="ControlType.Radio" />
+    <ArgType For="_ => _.Align" />
+    <ArgType For="_ => _.Color" />
+
+    <Story Name="Default">
+        <Arguments>
+            <Arg For="_ => _.ChildContent" Value="_content" />
+        </Arguments>
+        <Template>
+            <Text @attributes="context.Args" />
+        </Template>
+    </Story>
+
+    <Story Name="Small Centered">
+        <Arguments>
+            <Arg For="_ => _.ChildContent" Value="_content" />
+            <Arg For="_ => _.Size" Value="TextSizeClass.Small" />
+            <Arg For="_ => _.Align" Value="TextAlignClass.Center" />
+            <Arg For="_ => _.Color" Value="FgColorVar.Blue" />
+        </Arguments>
+        <Template>
+            <Text @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _content = @<text>Sample text</text>;
+}

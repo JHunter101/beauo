@@ -1,0 +1,22 @@
+@attribute [Stories("Examples/StackResponsive")]
+
+@using Beauo.Types.Style.Classes
+
+<Stories TComponent="StackResponsive" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Gap" />
+    <ArgType For="_ => _.Align" />
+
+    <Story Name="Default">
+        <Arguments>
+            <Arg For="_ => _.Gap" Value="GapClass.Medium" />
+        </Arguments>
+        <Template>
+            <StackResponsive @attributes="context.Args">
+                <Text>Top</Text>
+                <Text>Bottom</Text>
+            </StackResponsive>
+        </Template>
+    </Story>
+
+</Stories>

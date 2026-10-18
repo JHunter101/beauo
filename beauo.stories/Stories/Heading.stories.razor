@@ -1,0 +1,29 @@
+@attribute [Stories("Examples/Heading")]
+
+@using Beauo.Types.Style.Classes
+@using Beauo.Types.Style.Variables
+
+<Stories TComponent="Heading" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.ChildContent" />
+    <ArgType For="_ => _.Level" />
+    <ArgType For="_ => _.Size" Control="ControlType.Radio" />
+    <ArgType For="_ => _.Color" />
+    <ArgType For="_ => _.Align" />
+
+    <Story Name="H1 Large">
+        <Arguments>
+            <Arg For="_ => _.ChildContent" Value="_content" />
+            <Arg For="_ => _.Level" Value="1" />
+            <Arg For="_ => _.Size" Value="TextSizeClass.Billboard" />
+        </Arguments>
+        <Template>
+            <Heading @attributes="context.Args" />
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private RenderFragment _content = @<text>Page title</text>;
+}

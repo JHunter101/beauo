@@ -1,0 +1,40 @@
+@attribute [Stories("Examples/Shape")]
+
+@using Beauo.Types.Contents
+@using Beauo.Types.Style.Classes
+@using Beauo.Types.Style.Variables
+
+<Stories TComponent="Shape" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Content" />
+    <ArgType For="_ => _.Type" />
+    <ArgType For="_ => _.Size" />
+
+    <Story Name="Tag Blue">
+        <Arguments>
+            <Arg For="_ => _.Content" Value="_tagBlue" />
+            <Arg For="_ => _.Type" Value="ShapeClass.Tag" />
+        </Arguments>
+        <Template>
+            <Shape @attributes="context.Args" />
+        </Template>
+    </Story>
+
+    <Story Name="Editable Content">
+        <Arguments>
+            <Arg For="_ => _.Content" Value="_tagBlue" />
+            <Arg For="_ => _.Type" Value="ShapeClass.Tag" />
+        </Arguments>
+        <Template>
+            <div>
+                <Shape @attributes="context.Args" />
+                <Paragraph>Note: ShapeContent is immutable; update via code to change values.</Paragraph>
+            </div>
+        </Template>
+    </Story>
+
+</Stories>
+
+@code {
+    private ShapeContent _tagBlue = new ShapeContent(BgColorVar.Blue, "42");
+}

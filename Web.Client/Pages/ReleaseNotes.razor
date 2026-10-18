@@ -1,0 +1,91 @@
+﻿@page "/releases"
+@using Beauo.Components.Core
+@using Beauo.Components.Documentation
+
+<BeauoPage>
+	<ReleaseNotesTimeline>
+		<Release Major="0" Minor="1" Patch="0" Date="@(new DateOnly(2026, 07, 19))" Tags="@([ReleaseTag.Initial])">
+			<Overview>
+				Initial beta release of beauo with the first collection of reusable Blazor UI components,
+				layout primitives, styling utilities, and documentation components.
+			</Overview>
+
+			<New>
+				<InlineList>
+					<InlineListItem>
+						Added page components:
+						<InlineList>
+							<InlineListItem>BeauoPage</InlineListItem>
+							<InlineListItem>NotFound</InlineListItem>
+						</InlineList>
+					</InlineListItem>
+
+					<InlineListItem>
+						Added structure components:
+						<InlineList>
+							<InlineListItem>Row</InlineListItem>
+							<InlineListItem>Column</InlineListItem>
+							<InlineListItem>StackResponsive</InlineListItem>
+							<InlineListItem>Grid</InlineListItem>
+							<InlineListItem>Container</InlineListItem>
+							<InlineListItem>Timeline</InlineListItem>
+							<InlineListItem>TimelineItem</InlineListItem>
+							<InlineListItem>Horizontal rule</InlineListItem>
+						</InlineList>
+					</InlineListItem>
+
+					<InlineListItem>
+						Added inline components:
+						<InlineList>
+							<InlineListItem>Text</InlineListItem>
+							<InlineListItem>Heading</InlineListItem>
+							<InlineListItem>Paragraph</InlineListItem>
+							<InlineListItem>DateText</InlineListItem>
+							<InlineListItem>Inline lists</InlineListItem>
+						</InlineList>
+					</InlineListItem>
+
+					<InlineListItem>
+						Added action components:
+						<InlineList>
+							<InlineListItem>Button</InlineListItem>
+							<InlineListItem>Link</InlineListItem>
+						</InlineList>
+					</InlineListItem>
+
+					<InlineListItem>
+						Added settings components:
+						<InlineList>
+							<InlineListItem>Input</InlineListItem>
+							<InlineListItem>Select</InlineListItem>
+							<InlineListItem>Checkbox</InlineListItem>
+							<InlineListItem>RadioGroup</InlineListItem>
+							<InlineListItem>Field</InlineListItem>
+							<InlineListItem>Fieldset</InlineListItem>
+						</InlineList>
+					</InlineListItem>
+
+					<InlineListItem>
+						Added documentation components:
+						<InlineList>
+							<InlineListItem>Release (Item)</InlineListItem>
+							<InlineListItem>ReleaseNotesTimeline</InlineListItem>
+						</InlineList>
+					</InlineListItem>
+
+					<InlineListItem>
+						Added animation wrappers:
+						<InlineList>
+							<InlineListItem>FlipWrapper</InlineListItem>
+							<InlineListItem>ShakeWrapper</InlineListItem>
+						</InlineList>
+					</InlineListItem>
+
+					<InlineListItem>
+						Introduced reusable shape components and styling primitives.
+					</InlineListItem>
+				</InlineList>
+			</New>
+		</Release>
+	</ReleaseNotesTimeline>
+</BeauoPage>

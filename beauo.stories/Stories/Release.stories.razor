@@ -1,0 +1,38 @@
+@attribute [Stories("Examples/Release")]
+
+@using Beauo.Types.Contents
+@using Beauo.Components.Documentation
+
+<Stories TComponent="Release" Layout="typeof(CenteredLayout)">
+
+    <ArgType For="_ => _.Major" />
+    <ArgType For="_ => _.Minor" />
+    <ArgType For="_ => _.Patch" />
+    <ArgType For="_ => _.Date" />
+
+    <Story Name="Example Release">
+        <Arguments>
+            <Arg For="_ => _.Major" Value="1" />
+            <Arg For="_ => _.Minor" Value="0" />
+            <Arg For="_ => _.Patch" Value="0" />
+            <Arg For="_ => _.Date" Value="@(DateOnly.FromDateTime(DateTime.Now))" />
+        </Arguments>
+        <Template>
+            <Release @attributes="context.Args">
+                <Overview>
+                    <Text>Overview of release.</Text>
+                </Overview>
+                <New>
+                    <Paragraph>New features added in this release.</Paragraph>
+                </New>
+                <Changed>
+                    <Paragraph>Notable changes.</Paragraph>
+                </Changed>
+                <Fixes>
+                    <Paragraph>Bug fixes and small improvements.</Paragraph>
+                </Fixes>
+            </Release>
+        </Template>
+    </Story>
+
+</Stories>

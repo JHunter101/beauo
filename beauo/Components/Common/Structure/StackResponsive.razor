@@ -1,0 +1,13 @@
+﻿@namespace Beauo.Components
+
+<div class="col @Gap @Align @Justify @(Reverse ? "reverse" : "")">
+	@ChildContent
+</div>
+
+@code {
+	[Parameter, EditorRequired] public required RenderFragment ChildContent { get; set; }
+	[Parameter] public GapClass Gap { get; set; } = GapClass.Medium;
+	[Parameter] public AlignItemsClass Align { get; set; } = AlignItemsClass.Start;
+	[Parameter] public JustifyContentClass Justify { get; set; } = JustifyContentClass.Start;
+	[Parameter] public bool Reverse { get; set; } = false;
+}

@@ -1,0 +1,11 @@
+﻿@namespace Beauo.Components.Animations
+
+@inherits AnimationWrapperBase
+
+<div class="@CssClass" style="@WrapperStyle">
+	@ChildContent
+</div>
+
+@code {
+	protected override string AnimationName => "shake";
+}

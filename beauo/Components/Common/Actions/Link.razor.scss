@@ -1,0 +1,23 @@
+a {
+    display: inline-flex;
+    align-items: baseline;
+    color: #2563eb;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:focus-visible {
+        outline: 2px solid #2563eb;
+        outline-offset: 3px;
+        border-radius: 2px;
+    }
+
+    ::deep .row {
+        align-items: baseline;
+    }
+
+    ::deep svg {
+        height: 1em;
+        flex-shrink: 0;
+        align-self: center;
+    }
+}

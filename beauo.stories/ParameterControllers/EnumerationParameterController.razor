@@ -1,0 +1,24 @@
+@using BlazingStory.Addons.BuiltIns.Panel.Controls.ParameterControllers.Controllers
+@using Beauo.Types.Style.Base
+@inherits ParameterControllerBase
+@typeparam T where T : Enumeration
+
+<select @onchange="OnChange" class="bs-enum-controller">
+	<option value="">(none)</option>
+	@foreach (var opt in _options)
+	{
+		<option value="@opt.DisplayText" selected="@(opt.DisplayText == _currentText)">@opt.DisplayText</option>
+	}
+</select>
+
+@code {
+	private readonly T[] _options = Enumeration.GetAll<T>().ToArray();
+	private string _currentText => (Context.Value as Enumeration)?.DisplayText ?? "";
+
+	private async Task OnChange(ChangeEventArgs e)
+	{
+		var text = e.Value?.ToString();
+		var found = string.IsNullOrEmpty(text) ? null : _options.FirstOrDefault(x => x.DisplayText == text);
+		await OnInputAsync(found);
+	}
+}

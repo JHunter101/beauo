@@ -1,0 +1,63 @@
+﻿@typeparam TKey where TKey : struct, Enum
+@implements IDisposable
+
+@if (IsRelevant)
+{
+	<div class="page-transition-panel @GetStateClass()">
+		@ChildContent
+	</div>
+}
+
+@code {
+	[CascadingParameter] public required PageTransition<TKey> Parent { get; set; }
+	[Parameter, EditorRequired] public TKey Key { get; set; }
+	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+	[Parameter] public bool HideExiting { get; set; }
+
+	private bool IsRelevant => Parent.IsActive(Key) || (!HideExiting && Parent.IsExiting(Key));
+
+	protected override void OnInitialized()
+	{
+		if (Parent is null)
+		{
+			throw new InvalidOperationException($"{nameof(PageTransitionPage<TKey>)} must be used inside a matching " + $"{nameof(PageTransition<TKey>)}.");
+		}
+
+		Parent.RegisterPage(this);
+		Parent.StateChanged += OnParentStateChanged;
+	}
+
+	private void OnParentStateChanged() => InvokeAsync(StateHasChanged);
+
+	private string GetStateClass()
+	{
+		if (Parent is null)
+		{
+			return string.Empty;
+		}
+
+		var direction = Parent.Direction.ToString().ToLowerInvariant();
+
+		if (Parent.IsExiting(Key))
+		{
+			return $"exiting {direction}";
+		}
+
+		if (Parent.IsActive(Key))
+		{
+			return $"active {direction}";
+		}
+
+		return string.Empty;
+	}
+
+	public void Dispose()
+	{
+		if (Parent is null)
+			return;
+
+		Parent.StateChanged -= OnParentStateChanged;
+		Parent.UnregisterPage(this);
+	}
+}
+
