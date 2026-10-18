@@ -12,8 +12,9 @@
 	[CascadingParameter] public required PageTransition<TKey> Parent { get; set; }
 	[Parameter, EditorRequired] public TKey Key { get; set; }
 	[Parameter, EditorRequired] public RenderFragment ChildContent { get; set; }
+	[Parameter] public bool HideExiting { get; set; }
 
-	private bool IsRelevant => Parent.IsActive(Key) || Parent.IsExiting(Key);
+	private bool IsRelevant => Parent.IsActive(Key) || (HideExiting && Parent.IsExiting(Key));
 
 	protected override void OnInitialized()
 	{
